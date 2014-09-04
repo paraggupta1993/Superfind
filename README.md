@@ -1,5 +1,10 @@
 # Superfind - The Bookmarklet
 
+Drag this link to Bookmark Bar :
+
+[SuperFind][1]
+[1]:javascript:function(){alert("Welcome to SuperFind");}();
+
 Features:
 
 TODO:
