@@ -1,19 +1,26 @@
 (function(){
 
   main = function(){
+    //console.log(super$);
     alert("Welcome to SuperFind");
-    loadJquery();
 
-    // Start polling...
-    checkReady(function($) {
-      $(function() {
-        //After Loading Jquery :
-
-        dic = wordsExtractor($);
-        console.log(dic);
-
+    if(window.super$ == null){
+      loadJquery();
+      alert("Loading Jquery");
+      checkReady(function() {
+        onLoad(window.super$);
       });
-    });
+    }
+    else{
+        onLoad(window.super$);
+    }
+  }
+
+  onLoad = function(super$){
+      (function($){
+          dic = wordsExtractor($);
+          console.log(dic);
+      })(super$);
   }
 
   wordsExtractor = function($){
@@ -38,7 +45,8 @@
   // Poll for jQuery to come into existance
   checkReady = function(callback) {
       if (window.jQuery) {
-          callback(jQuery);
+          window.super$ = jQuery.noConflict( true );
+          callback();
       }
       else {
           window.setTimeout(function() { checkReady(callback); }, 20);
